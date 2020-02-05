@@ -3,8 +3,6 @@ $fn=60;
 
 thickness = 6.2;
 
-speaker_width = 54;
-speaker_height = 54;
 speaker_grill_diam = 54;
 speaker_grill_radius = speaker_grill_diam/2;
 
@@ -17,9 +15,9 @@ speaker_inset = 40;
 speaker_v_inset = 40 + thickness; 
 
 
-sp_slit_h = 2;
+sp_slit_h = 1;
 sp_slit_h_step = sp_slit_h * 2;
-sp_slit_count = speaker_height / sp_slit_h_step;
+sp_slit_count = (speaker_grill_diam / sp_slit_h_step) + 1;
 
 
 width = 500;
@@ -33,12 +31,12 @@ module main_box()
         x + slit_x_inset_at(i) ,y,slit_width_at(i),sp_slit_h];
 
     function left_speaker_x(i) = speaker_inset + thickness;
-    function right_speaker_x() = width - ( speaker_inset + speaker_width + (thickness *2));
+    function right_speaker_x() = width - ( speaker_inset + speaker_grill_diam + (thickness *2));
 
     function slit_y(i) = height - (speaker_v_inset +  slit_y_step(i));
     function slit_y_step(i) = (sp_slit_h_step * i);
 
-    function slit_delta_center(i) = speaker_grill_radius - slit_y_step(i);
+    function slit_delta_center(i) = speaker_grill_radius - (slit_y_step(i) + (sp_slit_h/2));
 
     function slit_width_at(i) = 2 * sqrt(pow(speaker_grill_radius,2) - pow(slit_delta_center(i),2));
     function slit_x_inset_at(i) = speaker_grill_radius - (slit_width_at(i) /2); 
