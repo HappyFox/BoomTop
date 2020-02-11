@@ -13,7 +13,9 @@ speaker_grill_radius = speaker_grill_diam/2;
 
 screen_width = 72;
 screen_height = 72;
-screen_corner = 5;
+
+// slider  the size of the rounded corners on the screen
+screen_corner = 5; // [50]
 screen_v_inset = height /2 + screen_width/2 + thickness;
 
 
