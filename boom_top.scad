@@ -16,7 +16,7 @@ speaker_grill_diam = 54;
 speaker_grill_radius = speaker_grill_diam/2;
 
 speaker_inset = 20;
-speaker_v_inset = 20 + thickness; 
+speaker_v_inset = 30 + thickness; 
 
 sp_slit_h = 1;
 sp_slit_h_step = sp_slit_h * 2;
@@ -45,7 +45,7 @@ usb_hole_width = 25;
 
 led_rad = 5;
 
-base_v_inset = 20 + thickness;
+base_v_inset = 25 + thickness;
 
 
 
