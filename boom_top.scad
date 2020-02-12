@@ -3,7 +3,7 @@ $fn=60;
 
 
 /* [Size] */
-width = 350;
+width = 300;
 depth = 150;
 height = 150;
 
@@ -11,6 +11,7 @@ thickness = 6.2;
 
 
 /* [Speakers] */
+
 speaker_grill_diam = 54;
 speaker_grill_radius = speaker_grill_diam/2;
 
@@ -79,6 +80,11 @@ module main_box()
     function screen_left() = 
         screen_x() + screen_width;
 
+    // led center
+    function led_center() = (width / 3)/2;
+
+    // Usb placement
+    function usb_center_x() = ((width-thickness) / 6) * 5; 
     
     cutouts_a = [
         [], //Bottom
@@ -98,8 +104,18 @@ module main_box()
             [screen_x(), screen_y() + screen_corner, 
                 screen_width, screen_height - (2 * screen_corner)], 
 
-            
-
+            [
+                usb_center_x() + 5   , 
+                base_v_inset - usb_hole_height/2, 
+                usb_hole_width,
+                usb_hole_height
+            ], 
+            [
+                usb_center_x() - 5 - usb_width , 
+                base_v_inset - usb_hole_height/2, 
+                usb_hole_width,
+                usb_hole_height
+            ], 
         ], // front
         [], // back
         [], // left
@@ -116,7 +132,9 @@ module main_box()
             [screen_corner, screen_left() - screen_corner, screen_top() - screen_corner ], 
 
             //LEDS
-            [led_rad, 20, base_v_inset],
+            [led_rad, led_center() - 20, base_v_inset],
+            [led_rad, led_center(), base_v_inset],
+            [led_rad, led_center() + 20, base_v_inset],
         ], // front
         [], // back
         [], // left
