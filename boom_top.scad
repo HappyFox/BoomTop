@@ -43,13 +43,16 @@ usb_width = 28;
 usb_hole_height = 12.5;
 usb_hole_width = 25;
  
-// LEDS
+/* [LEDS] */
 
 led_rad = 5;
 
 base_v_inset = 25 + thickness;
 
 
+/* [Pi mounting plates] */
+
+pi_plate_inset = 30;
 
 module main_box()
 {
@@ -92,6 +95,9 @@ module main_box()
 
     // Usb placement
     function usb_center_x() = ((width-thickness) / 6) * 5; 
+
+    // Pi mounting plate.
+
     
     cutouts_a = [
         [], //Bottom
