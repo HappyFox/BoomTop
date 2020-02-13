@@ -18,6 +18,8 @@ speaker_grill_radius = speaker_grill_diam/2;
 speaker_inset = 20;
 speaker_v_inset = 30 + thickness; 
 
+speaker_mount_size = 2.5;
+
 sp_slit_h = 1;
 sp_slit_h_step = sp_slit_h * 2;
 sp_slit_count = (speaker_grill_diam / sp_slit_h_step) + 1;
@@ -65,6 +67,11 @@ module main_box()
 
     function slit_width_at(i) = 2 * sqrt(pow(speaker_grill_radius,2) - pow(slit_delta_center(i),2));
     function slit_x_inset_at(i) = speaker_grill_radius - (slit_width_at(i) /2); 
+
+    function speaker_mount_bottom() = height - (speaker_v_inset + speaker_grill_diam);
+    function speaker_mount_top() = height - speaker_v_inset;
+
+        
 
     //screen 
 
@@ -135,6 +142,18 @@ module main_box()
             [led_rad, led_center() - 20, base_v_inset],
             [led_rad, led_center(), base_v_inset],
             [led_rad, led_center() + 20, base_v_inset],
+
+            // Left Speaker mounts
+            [speaker_mount_size, left_speaker_x(), speaker_mount_bottom()], 
+            [speaker_mount_size, left_speaker_x() + speaker_grill_diam, speaker_mount_bottom()], 
+            [speaker_mount_size, left_speaker_x(), speaker_mount_top()], 
+            [speaker_mount_size, left_speaker_x() + speaker_grill_diam, speaker_mount_top()], 
+
+            // Right Speaker mounts
+            [speaker_mount_size, right_speaker_x(), speaker_mount_bottom()], 
+            [speaker_mount_size, right_speaker_x() + speaker_grill_diam, speaker_mount_bottom()], 
+            [speaker_mount_size, right_speaker_x(), speaker_mount_top()], 
+            [speaker_mount_size, right_speaker_x() + speaker_grill_diam, speaker_mount_top()], 
         ], // front
         [], // back
         [], // left
