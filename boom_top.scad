@@ -54,6 +54,23 @@ base_v_inset = 25 + thickness;
 
 pi_plate_inset = 30;
 
+
+
+//screen 
+
+function screen_x() = 
+    (width /2) - (screen_width/2);
+
+function screen_y() = 
+    height - (screen_v_inset); 
+
+function screen_top() =
+    screen_y() + screen_height;
+
+function screen_left() = 
+    screen_x() + screen_width;
+
+
 module main_box()
 {
     //speaker
@@ -76,19 +93,7 @@ module main_box()
 
         
 
-    //screen 
 
-    function screen_x() = 
-        (width /2) - (screen_width/2);
-
-    function screen_y() = 
-        height - (screen_v_inset); 
-
-    function screen_top() =
-        screen_y() + screen_height;
-
-    function screen_left() = 
-        screen_x() + screen_width;
 
     // led center
     function led_center() = (width / 3)/2;
@@ -172,5 +177,13 @@ module main_box()
 }
 
 
-color("Gold", 0.75) main_box();
+module pi_plate()
+{
+   lasercutoutSquare(thickness, width/3, height - (2 * thickness)); 
+
+}
+color("Gold", 0.5) main_box();
+color("Blue", 0.80) translate([width/3, pi_plate_inset, thickness]) rotate([90,0,0]) pi_plate();
+
+
 
