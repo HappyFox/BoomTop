@@ -7,7 +7,11 @@ width = 300;
 depth = 150;
 height = 150;
 
+
 thickness = 6.2;
+
+int_height = height - (2*thickness);
+int_width = width - (2* thickness);
 
 
 /* [Speakers] */
@@ -53,6 +57,7 @@ base_v_inset = 25 + thickness;
 /* [Pi mounting plates] */
 
 pi_plate_inset = 30;
+pi_mount_holes_rad = 1.25;
 
 
 
@@ -90,10 +95,6 @@ module main_box()
 
     function speaker_mount_bottom() = height - (speaker_v_inset + speaker_grill_diam);
     function speaker_mount_top() = height - speaker_v_inset;
-
-        
-
-
 
     // led center
     function led_center() = (width / 3)/2;
@@ -179,10 +180,12 @@ module main_box()
 
 module pi_plate()
 {
-   lasercutoutSquare(thickness, width/3, height - (2 * thickness)); 
+    circles_remove_a= [[pi_mount_holes_rad, width/6, int_height/2]];
+
+    lasercutoutSquare(thickness, width/3, int_height, circles_remove=circles_remove_a); 
 
 }
-color("Gold", 0.5) main_box();
+//color("Gold", 0.5) main_box();
 color("Blue", 0.80) translate([width/3, pi_plate_inset, thickness]) rotate([90,0,0]) pi_plate();
 
 
